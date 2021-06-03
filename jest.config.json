@@ -1,0 +1,10 @@
+{
+    "collectCoverage": true,
+    "collectCoverageFrom": [
+        "./src/**/*.{js,jsx}"
+    ],
+    "testEnvironment": "node",
+    "transform": {
+        "^.+\\.jsx?$": "babel-jest"
+    }
+}
