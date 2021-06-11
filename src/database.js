@@ -1,7 +1,7 @@
 import Doc from './models/doc';
 
 const getDocById = async (docId) => {
-    const doc = await Doc.findById(docId).exec();
+    const doc = await Doc.findById(docId).lean().exec();
     return doc;
 };
 

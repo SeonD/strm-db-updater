@@ -7,7 +7,8 @@
     "dev": "env-cmd nodemon -w src --exec \"babel-node src --presets @babel/preset-env --presets @babel/polyfill\"",
     "test": "jest --config ./jest.config.json",
     "build": "babel -d ./dist ./src -s",
-    "build-docker": "babel -d ./dist ./src -s & docker build -t seondkim/strm-db-updater .",
+    "build:docker": "babel -d ./dist ./src -s & docker build -t seondkim/strm-db-updater .",
+    "push:docker": "babel -d ./dist ./src -s & docker build -t seondkim/strm-db-updater .& docker push seondkim/strm-db-updater",
     "lint": "eslint ./src",
     "lint-fix": "eslint ./src --fix"
   },
@@ -27,7 +28,7 @@
   "dependencies": {
     "axios": "^0.21.1",
     "express": "^4.17.1",
-    "json-merger": "^1.1.6",
+    "fast-json-patch": "^3.0.0-1",
     "kafka-node": "^5.0.0",
     "mongoose": "^5.12.6",
     "winston": "^3.3.3",
