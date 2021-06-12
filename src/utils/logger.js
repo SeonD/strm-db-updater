@@ -1,6 +1,6 @@
 import Logsene from 'winston-logsene';
-import { createLogger, transports } from 'winston';
-import { LOG } from '../config'
+import { createLogger, transports, format } from 'winston';
+import { LOG } from '../config';
 
 const allTransports = [
     new transports.Console()
@@ -15,6 +15,8 @@ if (LOG.SEMATEXT_TOKEN) {
 }
 
 const logger = createLogger({
+    format: format.json,
+    defaultMeta: { service: 'cs-service' },
     transports: allTransports
 });
 
