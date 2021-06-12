@@ -15,7 +15,7 @@ if (LOG.SEMATEXT_TOKEN) {
 }
 
 const logger = createLogger({
-    format: format.json,
+    format: format.json(),
     defaultMeta: { service: 'db-updater' },
     transports: allTransports
 });
