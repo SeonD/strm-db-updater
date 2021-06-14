@@ -2,7 +2,7 @@ import { Consumer, KafkaClient, Admin } from 'kafka-node';
 
 import { KAFKA } from './config';
 import { getDocById, updateDoc } from './database';
-import actionHandlers from './handlers';
+import actionHandlers from 'strm-action-handler';
 import { logger } from './utils/logger';
 
 logger.info(`DB UPDATER: Connecting to Kafka at ${KAFKA.BROKER_URL}`);
@@ -32,7 +32,16 @@ const handleMessage = async (message) => {
         return;
     }
     
-    doc.document = actionHandlers[actionType](doc.document, params);
+    const handler = actionHandlers[actionType];
+    if (!handler) {
+        logger.error(`Invalid action type: ${actionType}`);
+        return;
+    }
+    if (!handler.validate(params)) {
+        logger.error(`Invalid parameters for action ${actionType}`);
+        return;
+    }
+    doc.document = actionHandlers[actionType].apply(doc.document, params);
 
     await updateDoc(doc);
     logger.info(`Doc ${docId} updated.`);

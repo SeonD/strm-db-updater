@@ -26,12 +26,15 @@
     "nodemon": "^2.0.7"
   },
   "dependencies": {
+    "ajv": "^8.6.0",
     "axios": "^0.21.1",
     "express": "^4.17.1",
     "fast-json-patch": "^3.0.0-1",
+    "jsonpath": "^1.1.1",
     "kafka-node": "^5.0.0",
     "mongoose": "^5.12.6",
     "winston": "^3.3.3",
-    "winston-logsene": "^2.1.1"
+    "winston-logsene": "^2.1.1",
+    "strm-action-handler": "git+https://github.com/SeonD/strm-action-handler.git"
   }
 }
